@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Check requirements for the CKEditor Custom Buttons module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function ckeditor_custom_buttons_requirements($phase) {
+  $requirements = [];
+
+  if ($phase == 'install' || $phase == 'runtime') {
+    $plugin_detected = file_exists(DRUPAL_ROOT . '/modules/ckeditor_custom_buttons/js/plugins/ckeditor_custom_buttons/plugin.js');
+
+    if ($plugin_detected) {
+      $requirements['ckeditor_custom_buttons'] = [
+        'title' => t('CKEditor Custom Buttons'),
+        'value' => t('Plugin detected'),
+        'severity' => REQUIREMENT_OK,
+      ];
+    }
+    else {
+      $requirements['ckeditor_custom_buttons'] = [
+        'title' => t('CKEditor Custom Buttons'),
+        'value' => t('Plugin not detected'),
+        'severity' => REQUIREMENT_ERROR,
+        'description' => t('Plugin not detected.'),
+      ];
+    }
+  }
+
+  return $requirements;
+}

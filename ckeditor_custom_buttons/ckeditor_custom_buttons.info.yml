@@ -1,0 +1,8 @@
+name: CKEditor Custom Buttons
+type: module
+description: This module creates custom buttons in the CKEditor toolbar.
+package: CKEditor
+dependencies:
+  - ckeditor
+core: '8.x'
+project: 'ckeditor_custom_buttons'
